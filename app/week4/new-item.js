@@ -50,6 +50,7 @@ export default function NewItem()
                 <div className="mb-4 flex-1 mt-1 m-1 w-full">
                 <input
                     className="rounded-md flex mb-4"
+                    required
                     type="text"
                     placeholder="Item Name"
                     value={name}
@@ -58,7 +59,8 @@ export default function NewItem()
                 
                 
                 <input 
-                    className="rounded-md flex-1 mr-2"
+                    className="rounded-md flex-1 mr-2 p-1"
+                    required
                     type="number"
                     min="1"
                     max="99"
@@ -88,7 +90,7 @@ export default function NewItem()
                 </select>
                 </div>
                 <button 
-                    type="submit" className="bg-blue-500 rounded-md p-4 mb-4 py-2 px-4 w-full text-white">+</button>
+                    type="submit" className="bg-blue-500 rounded-md p-4 mb-4 py-2 px-4 w-full  text-white">+</button>
 
             </form>
         </div>
