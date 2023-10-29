@@ -7,6 +7,7 @@ import itemsData from "./items.json";
 import MealIdea from "./meal-ideas";
 
 
+
 export default function Page(){
 
     const [items, setItems] = useState(itemsData);
@@ -19,10 +20,11 @@ export default function Page(){
     };
     
     const handleItemSelect = (selectedItem) => {
+        console.log(`Selected: ${selectedItem}`);
         //clean up selected item
-        const cleanedName = selectedItem.name.replace(/[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2580-\u27BF]|\uD83E[\uDD10-\uDDFF]| /g, '');
+        const cleanedName = selectedItem.name.replace(/\p{Emoji}/gu, '').split(',')[0].trim().toLowerCase();
         setSelectedItemName(cleanedName);
-        console.log(cleanedName);
+        //console.log(cleanedName);}
     };
 
    

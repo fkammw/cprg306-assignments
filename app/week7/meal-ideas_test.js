@@ -15,14 +15,16 @@ async function fetchMealIdeas(ingredient){
 export default function MealIdea({ingredient}) {
     const [meal, setMeal] = useState([]);
 
-    async function loadMealIdeas(){
+    async function loadMealIdeas(ingredient){
         const dataM = await fetchMealIdeas(ingredient);
         setMeal(dataM);
         //console.log(Object.keys(dataM));
     }
 
-    useEffect(() => {        
-        loadMealIdeas();        
+    useEffect(() => {
+        if (ingredient) {
+            loadMealIdeas(ingredient);
+        }
     }, [ingredient]);
 
 
@@ -32,26 +34,33 @@ export default function MealIdea({ingredient}) {
 
 //     async function fetchMealIdeas(ingredient){
 //         try {
-//             API call to fetch meal ideas
 //             const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`);
 //             const data = await response.json();
-//             setMeal(data.meal) ;
+//             return data.meal;
 //         } catch (error) {
-//             console.error('Error occurs when fetching meal ideas ',error);
+//             console.error(error);
 //         }    
 //     }
 
-//     const loadMealIdeas = () => {
-//         if (ingredient) {
-//             fetchMealIdeas(ingredient);
+//     async function loadMealIdeas(){
+//         try {
+//             const dataM = await fetchMealIdeas(ingredient);
+//             setMeal(dataM);
+//             console.log(Object.keys(dataM));
+//         } catch (error) {
+//             console.error(error);
 //         }
 //     }
 
-//     useEffect(() => {
+//     /*useEffect(() => {
 //         loadMealIdeas();
-//     }, [ingredient]);
+//     }, [ingredient]);*/
 
-    
+//     useEffect(() => {
+//         if (ingredient) {
+//             loadMealIdeas();
+//         }
+//     }, [ingredient]);
 
     return (
         <div>

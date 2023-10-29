@@ -2,13 +2,13 @@
 
 import { useState } from "react";
 //import itemsData from "./items.json";
-import Item from "./item.js";
+import Item from "./item";
 
 
 
 function RenderSortBy(setSortBy) {
 
-     //for onclick
+     //for sorting
     const handleSort = (event) => {
         setSortBy(event.target.id);
     };
@@ -33,9 +33,14 @@ function RenderSortBy(setSortBy) {
         
 }
 
+
+
 export default function ItemList({items, onItemSelect}) {
     const [sortBy, setSortBy] = useState("name");
     
+    const handleClickItem = (item) => {
+    onItemSelect(item);
+    }
     
     if (sortBy === "name") {
         items.sort((a,b) => a.name.localeCompare(b.name));
@@ -57,8 +62,9 @@ export default function ItemList({items, onItemSelect}) {
                     name={item.name}
                     quantity={item.quantity}
                     category={item.category}
-                    //to trigger onItemSelect
-                    onSelect={() => onItemSelect(item)}/>
+                    //to trigger handleClickItem
+                    //onSelect={()=>onItemSelect(item)}/>
+                    onSelect={handleClickItem}/>
             ))}
              
         </div>
