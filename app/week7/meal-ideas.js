@@ -2,68 +2,48 @@
 
 import { useState, useEffect } from "react";
 
-async function fetchMealIdeas(ingredient){
-    try {
-        const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`);
-        const data = await response.json();
-        return data.meal;
-    } catch (error) {
-        console.error(error);
-    }    
+async function fetchMealIdeas(ingredient) {
+    const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`);
+    const data = await response.json();
+    return data.meals || [];
 }
 
-export default function MealIdea({ingredient}) {
-    const [meal, setMeal] = useState([]);
+export default function MealIdeas({ ingredient }) {
+    const [meals, setMeals] = useState([]);
 
-    async function loadMealIdeas(){
+    async function loadMealIdeas() {
         const dataM = await fetchMealIdeas(ingredient);
-        setMeal(dataM);
-        //console.log(Object.keys(dataM));
+        setMeals(dataM);
     }
 
-    useEffect(() => {        
-        loadMealIdeas();        
+    useEffect(() => {
+        loadMealIdeas();
     }, [ingredient]);
 
-
-//----------------------------------------------------------------------------------------------------------------
-// export default function MealIdea({ingredient}) {
-//     const [meal, setMeal] = useState([]);
-
-//     async function fetchMealIdeas(ingredient){
-//         try {
-//             API call to fetch meal ideas
-//             const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`);
-//             const data = await response.json();
-//             setMeal(data.meal) ;
-//         } catch (error) {
-//             console.error('Error occurs when fetching meal ideas ',error);
-//         }    
-//     }
-
-//     const loadMealIdeas = () => {
-//         if (ingredient) {
-//             fetchMealIdeas(ingredient);
-//         }
-//     }
-
-//     useEffect(() => {
-//         loadMealIdeas();
-//     }, [ingredient]);
-
-    
+    function showMeal() {
+        if (!ingredient) {
+            return <p>Please select an item from the list</p>;
+        } else if (meals.length === 0) {
+            return <p>No meal ideas found</p>;
+        } else {
+            return (
+                <div>
+                    <h1>Meal ideas</h1>
+                    <ul>
+                        {meals.map((meal) => (
+                            <li key={meal.idMeal}>
+                                {meal.strMeal}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            );
+        }
+    }
 
     return (
         <div>
-            <ul>
-                {meal && meal.map((m) => (
-                    <li key={m.idMeal}>
-                        {m.strMeal}
-                    </li>
-                ))}
-             </ul>
+            {showMeal()}
         </div>
-    )
-
+    );
 }
-

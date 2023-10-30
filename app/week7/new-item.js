@@ -48,7 +48,7 @@ export default function NewItem({onAddItem})
 
     return (
         
-        <div className="min-h-screen bg-grey flex items-start justify-center ">
+        <div className=" bg-grey flex items-start m-4 ">
             <form onSubmit={handleSubmit} className="bg-black ">
                 <div className="mb-4 flex-1 mt-1 m-1 w-full">
                 <input

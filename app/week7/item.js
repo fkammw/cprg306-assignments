@@ -1,8 +1,8 @@
 export default function Item({name, quantity, category, onSelect}){
 
-    //add a function to handle onclick
+    //add a function to handle onclick(onSelect)
     const handleClick = () => {
-        onSelect({name});
+        onSelect(name);
     };
 
         
