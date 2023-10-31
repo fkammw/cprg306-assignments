@@ -37,14 +37,14 @@ export default function Page(){
                 <NewItem onAddItem = {handleAddItem}></NewItem>
                 <ItemList items={items} onItemSelect={handleItemSelect} />
                 </div>
-                <div className="flex-initial mt-1 ml-4">
-                    <div className="bg-green-50 m-2">
+                <div className="flex mt-1">
+                    <div className="bg-green-50">
                         <h2 className="font-bond">Meal suggestion</h2>
                         <MealIdeas ingredient={selectedItemName}/> 
                     </div>
                 </div>
             </div>
-            <Link href="/" className="m-4 bg-slate-300 rounded-md p-4 ml-4 mt-4 mb-2 py-2 px-2 text-sky-900">Home</Link> 
+            <Link href="/"  className="m-4 bg-slate-300 rounded-md p-4 ml-4 mt-4 mb-2 py-2 px-2 text-sky-900">Home</Link> 
             
         </main>
     );
